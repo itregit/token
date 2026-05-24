@@ -1,8 +1,7 @@
-<<<<<<< Updated upstream
 {
   "name": "NFT #1234",
   "description": "My first ERC721 NFT minted on Sepolia testnet.",
-  "image": "https://example.com/image.png",
+  "image": "https://itregit.github.io/token/pic.png",
   "attributes": [
     {
       "trait_type": "Token ID",
@@ -10,16 +9,3 @@
     }
   ]
 }
-=======
-{
-  "name": "NFT #1234",
-  "description": "My first ERC721 NFT minted on Sepolia testnet.",
-  "image": "https://example.com/image.png",
-  "attributes": [
-    {
-      "trait_type": "Token ID",
-      "value": "1234"
-    }
-  ]
-}
->>>>>>> Stashed changes
