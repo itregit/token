@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sepolia Block Height</title>
+</head>
+<body>
+
+<button onclick="getBlock()">Get Current Block Height</button>
+
+<p id="result"></p>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.1/dist/ethers.umd.min.js"></script>
+
+<script>
+async function getBlock() {
+
+    if (!window.ethereum) {
+        alert("MetaMask not installed");
+        return;
+    }
+
+    await window.ethereum.request({
+        method: 'eth_requestAccounts'
+    });
+
+    const provider = new ethers.BrowserProvider(window.ethereum);
+
+    const blockNumber = await provider.getBlockNumber();
+
+    document.getElementById("result").innerText =
+        "Current block height: " + blockNumber;
+}
+</script>
+
+</body>
+</html>

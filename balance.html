@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ERC20 Balance</title>
+</head>
+<body>
+
+<button onclick="getBalance()">Get ERC20 Balance</button>
+
+<p id="result"></p>
+
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.13.1/dist/ethers.umd.min.js"></script>
+
+<script>
+
+const tokenAddress = "YOUR_ERC20_ADDRESS";
+
+const abi = [
+  "function balanceOf(address owner) view returns (uint256)",
+  "function decimals() view returns (uint8)"
+];
+
+async function getBalance() {
+
+    if (!window.ethereum) {
+        alert("MetaMask not installed");
+        return;
+    }
+
+    await window.ethereum.request({
+        method: 'eth_requestAccounts'
+    });
+
+    const provider = new ethers.BrowserProvider(window.ethereum);
+
+    const signer = await provider.getSigner();
+
+    const address = await signer.getAddress();
+
+    const contract = new ethers.Contract(
+        tokenAddress,
+        abi,
+        provider
+    );
+
+    const balance = await contract.balanceOf(address);
+
+    const decimals = await contract.decimals();
+
+    const formatted =
+        ethers.formatUnits(balance, decimals);
+
+    document.getElementById("result").innerText =
+        "Balance: " + formatted;
+}
+</script>
+
+</body>
+</html>
